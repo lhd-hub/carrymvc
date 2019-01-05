@@ -81,11 +81,12 @@ public class CarryDispatchServlet extends HttpServlet {
 
         // 获取请求的uri ：carry/query
         String uri = req.getRequestURI();
-//        String context = req.getContextPath();
-//        String path = uri.replaceAll(context,",");
         // 通过当前path获取方法名
         Method method = (Method) handlerMap.get(uri);
-        String iocBeanKey = "/" + uri.split("/")[1];
+        String iocBeanKey  = null;
+        if (uri.split("/").length > 0){
+            iocBeanKey = "/" + uri.split("/")[1];
+        }
         // 获取beans容器的bean
         MyController instance = (MyController) beans.get(iocBeanKey);
         if (null == instance) {

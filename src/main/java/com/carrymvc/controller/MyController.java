@@ -26,13 +26,12 @@ public class MyController {
     public void query(HttpServletRequest request, HttpServletResponse response,
                       @CarryRequestParam("name") String name, @CarryRequestParam("age") Integer age) {
 
-//        try {
-//            PrintWriter printWriter = response.getWriter();
+        try {
+            PrintWriter printWriter = response.getWriter();
             String res = myService.query(name);
-            System.out.println(res);
-//            printWriter.write(name);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+            printWriter.write(res);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
